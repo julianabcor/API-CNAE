@@ -1,85 +1,126 @@
-🏭 API CNAE
-Explore a Classificação Nacional de Atividades Econômicas com dados oficiais do IBGE
+<div align="center">
 
-Show Image Show Image Show Image Show Image Show Image Show Image
+# 📚 EVOLUÇÃO FLASK
 
-📖 Sobre • ✨ Funcionalidades • 🔌 API utilizada • 🚀 Como executar • 📂 Estrutura • 🗺️ Roadmap
+### API de gerenciamento de livros — organize, acompanhe e favorite suas leituras
+
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-3.1-000000?style=for-the-badge&logo=flask&logoColor=white)
+![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-ORM-D71F00?style=for-the-badge&logo=sqlalchemy&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![Alembic](https://img.shields.io/badge/Flask--Migrate-Alembic-6BA81E?style=for-the-badge)
+![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow?style=for-the-badge)
+
+[📖 Sobre](#-sobre-o-projeto) •
+[✨ Funcionalidades](#-funcionalidades) •
+[🗃️ Modelo de dados](#️-modelo-de-dados) •
+[🚀 Como executar](#-como-executar) •
+[📂 Estrutura](#-estrutura-do-projeto) •
+[🗺️ Roadmap](#️-roadmap)
 
 </div>
-📖 Sobre o projeto
 
-O API CNAE consome a API pública de Serviço de Dados do IBGE para consultar a CNAE (Classificação Nacional de Atividades Econômicas), o padrão usado no Brasil para classificar a atividade econômica de empresas.
+---
 
-O projeto traz duas formas de explorar os mesmos dados:
+## 📖 Sobre o projeto
 
-	Interface	Arquivo	Para quem é
-💻	Menu no terminal	app.py	Consulta rápida de seções e divisões
-📊	Painel web interativo	front-end.py	Navegar, filtrar, buscar, visualizar gráficos e exportar CSV
-✨ Funcionalidades
-📊 Painel web (Streamlit)
-	Página	O que oferece
-🏠	Visão geral	Indicadores (KPIs) de seções, divisões, grupos e média de divisões por seção, além de gráficos de barras, rosca e barras horizontais
-🗂️	Seções	Cards coloridos por seção com filtro por texto e exportação em CSV
-📑	Divisões	Tabela filtrável por seção e por descrição, com exportação em CSV
-🌳	Hierarquia	Escolha uma seção e uma divisão para ver os grupos que a compõem
-🔎	Busca	Pesquisa global em seções, divisões e grupos ao mesmo tempo, ignorando acentos e maiúsculas
+O **EVOLUÇÃO FLASK** é uma aplicação back-end construída com **Flask** para gerenciar uma biblioteca pessoal de livros. A ideia é ter um lugar único onde você cadastra seus livros e acompanha o que está **lendo**, o que já **finalizou** e quais são seus **favoritos**.
 
-Extras do painel:
+Os dados ficam em um banco **PostgreSQL**, acessado via **SQLAlchemy (ORM)**, e a evolução da estrutura do banco é controlada com **Flask-Migrate / Alembic**. As respostas da API são pensadas para sair em **JSON**.
 
-⚡ Cache de 1 hora nos dados, para o painel carregar rápido
-🔄 Botão Atualizar dados para forçar nova consulta ao IBGE
-📥 Exportação em CSV (separador ; e codificação utf-8-sig, compatível com Excel)
-🛡️ Tratamento de erro quando a API do IBGE está inacessível
-💻 Menu no terminal
-========== API Atividades Econômicas ==========
-1. Listar todas as Seções
-2. Listar todas as Divisões
-3. Sair
-----------
-Digite o número da sua opção:
-🔌 API utilizada
+> 🌱 O projeto está em fase inicial: a base (configuração, banco e modelo `Book`) já está montada e os endpoints estão sendo construídos.
 
-Os dados vêm diretamente da API de CNAE do IBGE, sem necessidade de chave de acesso.
+---
 
-Base: https://servicodados.ibge.gov.br/api/v2/cnae
+## ✨ Funcionalidades
 
-Endpoint	Retorna	Usado em
-/secoes	Seções (nível 1, letras)	Terminal e painel
-/divisoes	Divisões (nível 2, 2 dígitos)	Terminal e painel
-/grupos	Grupos (nível 3)	Painel
-🔄 Fluxo da aplicação
-terminal
-navegador
-👤 Usuário
-Interface
-💻 app.py
-📊 front-end.py
-🌐 requests
-🏛️ API do IBGE
-🐼 Pandas
-📈 Plotly
-📥 CSV
-🧭 Hierarquia da CNAE
-🔤 Seçãoletra, ex.: A
-🔢 Divisão2 dígitos, ex.: 01
-📂 Gruponível 3
-🛠️ Tecnologias
-Tecnologia	Uso
-🐍 Python	Linguagem principal
-🌐 Requests	Consumo da API do IBGE
-🖥️ Streamlit	Painel web interativo
-🐼 Pandas	Organização e filtro dos dados
-📈 Plotly Express	Gráficos de barras e rosca
-🚀 Como executar
-Pré-requisitos
-Python 3.10+
-Git
-Conexão com a internet (os dados são buscados na API do IBGE)
-Passo a passo
-bash
+| | Funcionalidade | Situação |
+|---|---|---|
+| 🔍 | Consultar livros | 🛠️ Planejado |
+| ➕ | Cadastrar livros | 🛠️ Planejado |
+| ✏️ | Editar / atualizar livros | 🛠️ Planejado |
+| 🗑️ | Deletar livros | 🛠️ Planejado |
+| ⭐ | Favoritar livros | 🛠️ Planejado |
+| 📖 | Marcar livros em leitura | 🛠️ Planejado |
+| ✅ | Marcar livros finalizados | 🛠️ Planejado |
+| 🧱 | Modelo `Book` com UUID e status de leitura | ✔️ Estruturado |
+| 🔌 | Configuração do banco com SQLAlchemy | ✔️ Estruturado |
+
+---
+
+## 🗃️ Modelo de dados
+
+Entidade **`book`**:
+
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|:---:|---|
+| 🔑 `id` | `UUID` | ✔️ | Chave primária, gerada automaticamente |
+| 📕 `title` | `String(255)` | ✔️ | Título do livro |
+| ✍️ `author` | `String(255)` | ✔️ | Autor(a) do livro |
+| 📝 `description` | `Text` | ✔️ | Descrição / sinopse |
+| ⭐ `is_favorite` | `Boolean` | ✔️ | Se é favorito (padrão: `False`) |
+| 📖 `is_reading` | `Boolean` | ✔️ | Se está em leitura (padrão: `False`) |
+| ✅ `is_finished` | `Boolean` | ✔️ | Se já foi finalizado (padrão: `False`) |
+
+O método `as_dict()` converte o objeto `Book` em um dicionário Python (com o `id` convertido para texto), pronto para ser serializado em **JSON** na resposta HTTP.
+
+```json
+{
+  "id": "3f2b8c1e-5a47-4d1f-9c0a-7e6d2b9a1f10",
+  "title": "Título do livro",
+  "author": "Nome do autor",
+  "description": "Sinopse do livro",
+  "is_favorite": false,
+  "is_reading": true,
+  "is_finished": false
+}
+```
+
+---
+
+## 🔄 Fluxo da aplicação
+
+```mermaid
+flowchart LR
+    A[👤 Cliente] -->|requisição HTTP| B[⚙️ Flask - app.py]
+    B --> C[🧱 Modelo Book]
+    C --> D[🔌 SQLAlchemy - db.py]
+    D --> E[(🐘 PostgreSQL)]
+    E --> D
+    D --> C
+    C -->|as_dict| B
+    B -->|resposta JSON| A
+```
+
+---
+
+## 🛠️ Tecnologias
+
+| Tecnologia | Uso |
+|---|---|
+| 🐍 **Python** | Linguagem principal |
+| 🌶️ **Flask** | Framework web |
+| 🧩 **Flask-SQLAlchemy / SQLAlchemy** | ORM para acesso ao banco |
+| 🐘 **PostgreSQL** (`psycopg`) | Banco de dados |
+| 🔄 **Flask-Migrate / Alembic** | Controle de migrações do banco |
+| 🔐 **python-dotenv** | Variáveis de ambiente via arquivo `.env` |
+
+---
+
+## 🚀 Como executar
+
+### Pré-requisitos
+
+- [Python 3.10+](https://www.python.org/downloads/)
+- [Git](https://git-scm.com/)
+- [PostgreSQL](https://www.postgresql.org/download/) com um banco criado para o projeto
+
+### Passo a passo
+
+```bash
 # 1️⃣ Clone o repositório
-git clone https://github.com/julianabcor/API-CNAE.git
-cd API-CNAE
+git clone https://github.com/julianabcor/EVOLUCAO-FLASK.git
+cd EVOLUCAO-FLASK
 
 # 2️⃣ Crie e ative o ambiente virtual
 python -m venv venv
@@ -88,53 +129,75 @@ venv\Scripts\activate           # Windows
 
 # 3️⃣ Instale as dependências
 pip install -r requirements.txt
-▶️ Rodando
+```
 
-📊 Painel web (recomendado)
+### 🔐 Variáveis de ambiente
 
-bash
-streamlit run front-end.py
+Crie um arquivo `.env` na raiz do projeto com a URL de conexão do seu banco PostgreSQL:
 
-Depois é só abrir 👉 http://localhost:8501
+```env
+database=postgresql+psycopg://usuario:senha@localhost:5432/nome_do_banco
+```
 
-💻 Menu no terminal
+> 🔒 O `.env` já está no `.gitignore`, então suas credenciais não vão para o GitHub.
 
-bash
-python app.py
-📂 Estrutura do projeto
-📦 API-CNAE
- ┣ 📜 app.py             # Menu no terminal (seções e divisões)
- ┣ 📜 front-end.py       # Painel web com Streamlit + Plotly
+---
+
+## 📂 Estrutura do projeto
+
+```
+📦 EVOLUCAO-FLASK
+ ┣ 📂 models
+ ┃ ┣ 📜 __init__.py
+ ┃ ┗ 📜 book.py          # Modelo Book (entidade do banco)
+ ┣ 📜 app.py             # Aplicação Flask e endpoints
+ ┣ 📜 db.py              # Instância do SQLAlchemy (ORM)
+ ┣ 📜 migrations.py      # Controle das alterações estruturais do banco
  ┣ 📜 requirements.txt   # Dependências do projeto
+ ┣ 📜 .gitignore
  ┗ 📜 README.md
-🗺️ Roadmap
- Menu no terminal com seções e divisões
- Painel web com visão geral, seções, divisões, hierarquia e busca
- Gráficos interativos com Plotly
- Exportação de dados em CSV
- Cache e tratamento de erros da API
- Incluir os níveis de classes e subclasses da CNAE
- Consulta de uma atividade pelo código CNAE
- Deploy online do painel
-🤝 Contribuindo
+```
+
+---
+
+## 🗺️ Roadmap
+
+- [x] Estrutura inicial do projeto com Flask
+- [x] Instância do SQLAlchemy (`db.py`)
+- [x] Modelo `Book` com UUID e status de leitura
+- [x] Método `as_dict()` para serialização em JSON
+- [ ] Finalizar a configuração da aplicação e conexão com o banco
+- [ ] Configurar migrações com Flask-Migrate
+- [ ] Endpoint para **consultar** livros
+- [ ] Endpoint para **cadastrar** livros
+- [ ] Endpoint para **editar / atualizar** livros
+- [ ] Endpoint para **deletar** livros
+- [ ] Endpoint para **favoritar** livros
+- [ ] Listagem de livros **em leitura**
+- [ ] Listagem de livros **finalizados**
+- [ ] Deploy online
+
+---
+
+## 🤝 Contribuindo
 
 Contribuições são bem-vindas!
 
-Faça um fork do projeto
-Crie uma branch: git checkout -b minha-feature
-Commit: git commit -m "Adiciona minha feature"
-Push: git push origin minha-feature
-Abra um Pull Request
-📊 Fonte dos dados
+1. Faça um fork do projeto
+2. Crie uma branch: `git checkout -b minha-feature`
+3. Commit: `git commit -m "Adiciona minha feature"`
+4. Push: `git push origin minha-feature`
+5. Abra um Pull Request
 
-Os dados são fornecidos pelo IBGE (Instituto Brasileiro de Geografia e Estatística) através do portal servicodados.ibge.gov.br.
+---
 
-👩‍💻 Autora
+## 👩‍💻 Autora
+
 <div align="center">
 
-Feito com 💜 por Juliana
+Feito com 💜 por **Juliana**
 
-GitHub
+[![GitHub](https://img.shields.io/badge/GitHub-julianabcor-181717?style=for-the-badge&logo=github)](https://github.com/julianabcor)
 
 ⭐ Se gostou do projeto, deixe uma estrela!
 
